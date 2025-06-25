@@ -10,7 +10,7 @@
 #'
 #' @export
 #'
-rep_c <- function(x, times) {
+rep_c <- function(x, times = 1) {
   # Do some checking on the arguments
 
   .Call(c_rep, x, times)
