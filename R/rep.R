@@ -23,20 +23,3 @@ rep_c <- function(x, times = 1, each = 1) {
 
   .Call(c_rep, x, times, each)
 }
-
-rep_check <- function(x, times = 1) {
-  length_x <- length(x)
-
-  for (i in (seq_len(times) - 1)) {
-    for (j in (seq_along(x) - 1)) {
-      print(paste(
-        "i: ",
-        i,
-        "j:",
-        j,
-        "i * length_x + j:",
-        i * length_x + j
-      ))
-    }
-  }
-}
