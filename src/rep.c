@@ -6,13 +6,14 @@
 
 // TODO: add `each` arg
 // MAYBE: add `length.out` arg
-SEXP c_rep(SEXP x, SEXP times) {
+SEXP c_rep(SEXP x, SEXP times, SEXP each) {
 
   // for now assume times is a single numeric
   // TODO: allow times to be a vector
   int times_c = Rf_asInteger(times);
+  int each_c = Rf_asInteger(each);
   size_t length_x = XLENGTH(x);
-  size_t length_out = length_x * times_c;
+  size_t length_out = length_x * times_c * each_c;
   const double *xp = REAL(x);
 
   SEXP out = PROTECT(Rf_allocVector(REALSXP, length_out));

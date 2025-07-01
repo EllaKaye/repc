@@ -10,14 +10,18 @@
 #'
 #' @export
 #'
-rep_c <- function(x, times = 1) {
+rep_c <- function(x, times = 1, each = 1) {
   # Do some checking on the arguments
 
   if (is.integer(x)) {
     x <- as.numeric(x)
   }
 
-  .Call(c_rep, x, times)
+  if (!is.integer(each)) {
+    each <- as.integer(each)
+  }
+
+  .Call(c_rep, x, times, each)
 }
 
 rep_check <- function(x, times = 1) {
