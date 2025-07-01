@@ -18,6 +18,10 @@ rep_c <- function(x, times = 1, each = 1) {
     x <- as.numeric(x)
   }
 
+  if (!is.integer(times)) {
+    times <- as.integer(times)
+  }
+
   if (!is.integer(each)) {
     each <- as.integer(each)
   }
