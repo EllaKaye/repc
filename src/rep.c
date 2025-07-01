@@ -18,20 +18,30 @@ SEXP c_rep(SEXP x, SEXP times, SEXP each) {
   const double *xp = REAL(x);
 
   SEXP out = PROTECT(Rf_allocVector(REALSXP, length_out));
+  double *outp = REAL(out); 
 
   if (each_c == 1 && length_times == 1) {
-    for (size_t i = 0; i < times_c; ++i) {
+    for (size_t i = 0; i < times_c; i++) {
       for (size_t j = 0; j < length_x; j++) {
-        REAL(out)[i * length_x + j] = xp[j];
+        outp[i * length_x + j] = xp[j];
       }
     }
   } else if (each_c > 1 && times_c == 1 && length_times == 1) {
-    for (size_t i = 0; i < length_x; ++i) {
+    for (size_t i = 0; i < length_x; i++) {
       for (size_t j = 0; j < each_c; j++) {
-        REAL(out)[i * each_c + j] = xp[i];
+        outp[i * each_c + j] = xp[i];
       }
     }
-  } else {
+  } else if (each_c > 1 && times_c > 1 && length_times == 1) {
+    for (size_t i = 0; i < length_x; i++) {
+        for (size_t j = 0; j < each_c; j++) {
+            for (size_t k = 0; k < times_c; k++) {
+                outp[(i * each_c + j) + k * (length_x * each_c)] = xp[i];
+            }
+        }
+    }
+  } 
+  else {
     printf("Haven't dealt with this case yet");
   }
 
