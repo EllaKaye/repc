@@ -12,7 +12,7 @@
 #' @export
 #'
 rep_c <- function(x, times = 1, each = 1) {
-  # Do some checking on the arguments
+  # TODO: some checking on the arguments
 
   if (is.integer(x)) {
     x <- as.numeric(x)
