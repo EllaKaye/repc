@@ -4,12 +4,14 @@
 \alias{rep_c}
 \title{Repeat a vector}
 \usage{
-rep_c(x, times)
+rep_c(x, times = 1, each = 1)
 }
 \arguments{
 \item{x}{A single numeric value}
 
-\item{times}{A single numeric value}
+\item{times}{An integer vector}
+
+\item{each}{A single integer value}
 }
 \description{
 \code{rep_c()} repeats a vector
