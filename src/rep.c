@@ -42,7 +42,7 @@ SEXP c_rep(SEXP x, SEXP times, SEXP each) {
     }
   } 
   else {
-    printf("Haven't dealt with this case yet");
+    Rprintf("Haven't dealt with this case yet");
   }
 
   UNPROTECT(1);
