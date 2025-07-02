@@ -62,7 +62,6 @@ SEXP c_rep(SEXP x, SEXP times, SEXP each) {
       change_indices[i + 1] = change_indices[i] + timesp[i];
     }
 
-    size_t output_index = 0;
     for (size_t i = 0; i < length_x; i++) {
         size_t start_idx = change_indices[i];
         size_t end_idx = (i == length_x - 1) ? length_out : change_indices[i + 1];
