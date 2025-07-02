@@ -8,9 +8,6 @@
 // MAYBE: add `length.out` arg
 SEXP c_rep(SEXP x, SEXP times, SEXP each) {
 
-  // for now assume times is a single numeric
-  // TODO: allow times to be a vector
-  //int times_c = Rf_asInteger(times);
   int each_c = Rf_asInteger(each);
   size_t length_x = XLENGTH(x);
   size_t length_times = XLENGTH(times);
@@ -32,6 +29,7 @@ SEXP c_rep(SEXP x, SEXP times, SEXP each) {
   SEXP out = PROTECT(Rf_allocVector(REALSXP, length_out));
   double *outp = REAL(out); 
 
+  /*
   if (each_c == 1 && length_times == 1) {
     for (size_t i = 0; i < timesp[0]; i++) {
       for (size_t j = 0; j < length_x; j++) {
@@ -45,6 +43,8 @@ SEXP c_rep(SEXP x, SEXP times, SEXP each) {
       }
     }
   } else if (each_c > 1 && timesp[0] > 1 && length_times == 1) {
+  */
+  if (length_times == 1) {
     for (size_t i = 0; i < length_x; i++) {
         for (size_t j = 0; j < each_c; j++) {
             for (size_t k = 0; k < timesp[0]; k++) {
