@@ -13,18 +13,15 @@
 #'
 rep_c <- function(x, times = 1, each = 1) {
   # TODO: some checking on the arguments
-
-  if (is.integer(x)) {
-    x <- as.numeric(x)
+  if (length(times) > 1 & length(times) != length(x)) {
+    stop(
+      "Either `times` must be a single integer or `x` and `times` must be the same length"
+    )
   }
 
-  if (!is.integer(times)) {
-    times <- as.integer(times)
+  if (length(each) != 1) {
+    stop("`each` must be a single integer")
   }
 
-  if (!is.integer(each)) {
-    each <- as.integer(each)
-  }
-
-  .Call(c_rep, x, times, each)
+  .Call(c_rep, as.numeric(x), as.integer(times), as.integer(each))
 }
